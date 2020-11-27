@@ -3,6 +3,7 @@
 const path = require('path');
 const fs = require('fs');
 const marked = require('marked');
+const fetch = require('node-fetch');
 
 // Verifica si existe la ruta existe
 const pathError = (routePath) => fs.existsSync(routePath);
@@ -28,14 +29,13 @@ const readDocumentMD = (document) => fs.readFileSync(document, 'utf-8');
 // Funcion para extraer las rutas donde estan los archivos .md
 const arrayPathMd = (routePath) => {
   let newArrayMdRuta = [];
-  const pathAbs = getAbsolute(routePath);
-  if (isFile(pathAbs)) {
-    if (fileExtension(pathAbs) === '.md') {
-      newArrayMdRuta.push(pathAbs);
+  if (isFile(routePath)) {
+    if (fileExtension(routePath) === '.md') {
+      newArrayMdRuta.push(routePath);
     }
   } else{
-    directoryNavigator(pathAbs).forEach((element) => {
-      const pathMdElement = path.join(pathAbs,element);
+    directoryNavigator(routePath).forEach((element) => {
+      const pathMdElement = path.join(routePath,element);
       const filesOfDirectory = arrayPathMd(pathMdElement);
       newArrayMdRuta = newArrayMdRuta.concat(filesOfDirectory);
     });
@@ -61,6 +61,38 @@ const extractLinks = (Path) => {
   return arrayLinks;
 };
 
+// Validacion 3 intentio :)
+
+const validation = (link) => {
+  const arrPromises = [];
+
+  link.forEach((element) => {
+    arrPromises.push(fetch(element.href)
+      .then((response) => (
+        {
+          href: element.href,
+          text: element.text,
+          file: element.file,
+          status: response.status,
+          statusText: response.statusText,
+        }
+      ))
+      .catch(() => (
+        {
+          href: element.href,
+          text: element.text,
+          file: element.file,
+          status: 'error',
+          statusText: 'FAIL',
+        }
+      )));
+  });
+  return Promise.all(arrPromises);
+};
+
+// validation('D:\\1.LABORATORIA\\LIM013-fe-md-links\\archivos').then((res) => console.log(res));
+// console.log(validation('D:\\1.LABORATORIA\\LIM013-fe-md-links\\archivos'));
+
 module.exports = {
   pathAbsolute,
   getAbsolute,
@@ -71,4 +103,5 @@ module.exports = {
   readDocumentMD,
   extractLinks,
   arrayPathMd,
+  validation,
 };

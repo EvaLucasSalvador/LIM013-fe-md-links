@@ -12,5 +12,6 @@ module.exports = {
   },
   rules: {
     'linebreak-style': 0,
+    'prefer-promise-reject-errors': false,
   },
 };
