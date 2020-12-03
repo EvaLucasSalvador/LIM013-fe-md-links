@@ -1,9 +1,10 @@
 {
-  "name": "mdlink-laboratoria",
+  "name": "mdlink",
   "version": "1.0.0",
   "description": "Una librería (o biblioteca - library) en JavaScript.",
   "main": "index.js",
   "dependencies": {
+    "chalk": "^4.1.0",
     "jest": "^26.6.2",
     "marked": "^1.2.3",
     "node-fetch": "^2.6.1"
@@ -28,5 +29,6 @@
   "bugs": {
     "url": "https://github.com/EvaLucasSalvador/LIM013-fe-md-links/issues"
   },
-  "homepage": "https://github.com/EvaLucasSalvador/LIM013-fe-md-links#readme"
+  "homepage": "https://github.com/EvaLucasSalvador/LIM013-fe-md-links#readme",
+  "bin": "./cli.js"
 }

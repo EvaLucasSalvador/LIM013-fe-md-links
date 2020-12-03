@@ -1,5 +1,3 @@
-/* eslint-disable comma-spacing */
-/* eslint-disable keyword-spacing */
 const path = require('path');
 const fs = require('fs');
 const marked = require('marked');
@@ -63,19 +61,20 @@ const extractLinks = (Path) => {
 
 // Validacion 3 intentio :)
 
-const validation = (link) => {
+const validation = (arrLink) => {
   const arrPromises = [];
 
-  link.forEach((element) => {
+  arrLink.forEach((element) => {
     arrPromises.push(fetch(element.href)
       .then((response) => (
-        {
-          href: element.href,
-          text: element.text,
-          file: element.file,
-          status: response.status,
-          statusText: response.statusText,
-        }
+          {
+            href: element.href,
+            text: element.text,
+            file: element.file,
+            status: response.status,
+            statusMessage:(response.status>=200 && response.status<=399) ? 'OK':'FAIL',
+            //statusText:response.statusText
+          }
       ))
       .catch(() => (
         {
@@ -83,15 +82,36 @@ const validation = (link) => {
           text: element.text,
           file: element.file,
           status: 'error',
-          statusText: 'FAIL',
+          statusMessage: 'FAIL',
         }
       )));
   });
   return Promise.all(arrPromises);
 };
 
-// validation('D:\\1.LABORATORIA\\LIM013-fe-md-links\\archivos').then((res) => console.log(res));
-// console.log(validation('D:\\1.LABORATORIA\\LIM013-fe-md-links\\archivos'));
+ // Funcion para sacar los stats
+ const stats = (arrayLinks) => {
+  const total = arrayLinks.length;
+  const unique= [...new Set(arrayLinks.map((element) => element.href))].length;
+  return `
+    total: ${total}
+    únicos: ${unique}
+    `
+};
+
+const statsValidate = (arrayLinks) => {
+  const brokenLinks = arrayLinks.filter((elem) => !(elem.status>=200 && elem.status<=399));
+  return `
+        ${stats(arrayLinks)}
+        'Broken:' ${brokenLinks.length}`;
+};
+
+const error = (error) => {
+  return  `error`;
+};
+
+//console.log(getAbsolute('.\\test_container\\archivo4.md'))
+//console.log(arrayPathMd('D:\\1.LABORATORIA\\LIM013-fe-md-links\\test\\test_container\\prueba'))
 
 module.exports = {
   pathAbsolute,
@@ -104,4 +124,11 @@ module.exports = {
   extractLinks,
   arrayPathMd,
   validation,
+  stats,
+  statsValidate,
+  error,
 };
+
+// validation('D:\\1.LABORATORIA\\LIM013-fe-md-links\\archivos').then((res) => console.log(res));
+// console.log(validation('D:\\1.LABORATORIA\\LIM013-fe-md-links\\archivos'));
+
