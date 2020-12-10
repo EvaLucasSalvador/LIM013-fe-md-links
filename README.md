@@ -24,43 +24,45 @@ Tendremos las siguientes opciones que podemos elegir.
 
 ## 2. Diagrama de flujo
 ### Diagrama de flujo del API Markdown-Links
-![img](img\DIAGRAMA_API.jpg)
+![](img\DIAGRAMA_API.jpg)
 
 ### Diagrama de flujo del CLI Markdown-Links
-![img](img\DIAGRAMA_CLI.jpg)
+![](img\DIAGRAMA_CLI.jpg)
 
 ## 3. Documentación técnica de la librería
 
 ### Conceptos a tener en consideración: 
-#### •	Ruta Absoluta: 
+### •	Ruta Absoluta: 
 Incluye el nombre del dominio.
+
 Ejemplo: 'D:\\1.LABORATORIA\\LIM013-fe-md-links\\test\\test_container\\archivo4.md'
 
-#### •	Ruta relativa: 
+### •	Ruta relativa: 
 Sólo indica el orden de directorios.
+
 Ejemplo: "test\\test_container\\archivo4.md"
 
-#### •	Métodos síncrono: 
+### •	Métodos síncrono: 
 Toda la operación de entrada/salida se ejecuta de forma secuencial y, por tanto, debemos esperar a que se complete para procesar el resultado.
 
-#### •	Método asíncrono: 
+### •	Método asíncrono: 
 la finalización de la operación se con callback, una promesa o un evento, lo que hace posible que la respuesta sea procesada en diferido. Lo que permite que las tareas sean concurrentes o paralelo 
 ##### *	Concurrencia: Euando dos o mas tareas progresan simultáneamente.
 ##### * Paralelismo: Cuando dos o mas tareas se ejecutan, literalmente, a la vez, en el mismo instante de tiempo.
 
-#### •	Un paquete: 
+### •	Un paquete: 
 Es un archivo o directorio que se describe en package.json
 
-#### •	Un módulo: 
+### •	Un módulo: 
 Es cualquier archivo o directorio que Node.js puede cargar con require()
 
-path: Proporciona utilidades para trabajar con rutas de archivos y directorios.
+    path: Proporciona utilidades para trabajar con rutas de archivos y directorios.
 
-fs: Proporciona una API para interactuar con el sistema de archivos.
+    fs: Proporciona una API para interactuar con el sistema de archivos.
 
-Marked: compilador de bajo nivel para analizar markdown, sin almacenamiento en caché o bloqueo durante largos períodos de tiempo.
+    Marked: compilador de bajo nivel para analizar markdown, sin almacenamiento en caché o bloqueo durante largos períodos de tiempo.
 
-node-fetch: Un módulo liviano que trae window.fetch a Node.js
+    node-fetch: Un módulo liviano que trae window.fetch a Node.js
 
 
 
