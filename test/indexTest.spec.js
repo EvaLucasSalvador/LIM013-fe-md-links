@@ -1,5 +1,4 @@
 const path = require('path');
-//const { extractLinks } = require('D:\\1.LABORATORIA\\LIM013-fe-md-links\\index.js');
 const index = require('../index.js')
 
 ////// DATA DE TESTEO //////
