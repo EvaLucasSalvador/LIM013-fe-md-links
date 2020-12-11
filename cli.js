@@ -2,10 +2,10 @@ const mdLinks = require('./mdLinks.js');
 const index = require('./index.js');
 
 const help = `
-md-links <path-to>
-md-links <path-to-file> --validate
-md-links <path-to-file> --stats
-md-links <path-to-file> (--stas --validate || --validate --stas)
+mdlink <route>
+mdlink <route> --validate
+mdlink <route> --stats
+mdlink <route> (--stas --validate || --validate --stas)
 `;
 
 const optionsCli = (path, options) => {

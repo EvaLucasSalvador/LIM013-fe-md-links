@@ -73,15 +73,15 @@ Es cualquier archivo o directorio que Node.js puede cargar con require()
 ## 5. Aplicación
 Para poder hacer la consultas con el API debemos ingresar los siguientes comandos en el terminal de acuerdo a nuestra necesidad.
 ### •	Cuando no recordemos los comando a ingresar
-    help
+    mdlink
 ### •	Si queremos ver la lista de links de la ruta ingresada
-    md-links <path-to>
+    mdlink <route>
 ### •	Si queremos validar los links de la ruta ingresada
-    md-links <path-to-file> --validate
+    mdlink <route> --validate
 ### •	Si queremos ver las estadisticas de los links de la ruta ingresada
-    md-links <path-to-file> --stats
+    mdlink <route> --stats
 ### •	Si queremos ver las estadisticas y links rotos de los link de la ruta ingresada
-    md-links <path-to-file> (--stas --validate || --validate --stas)
+    mdlink <route> (--stas --validate || --validate --stas)
 
 
 

@@ -23,6 +23,6 @@ module.exports = {
 };
 
 
- mdLinks('D:\\1.LABORATORIA\\LIM013-fe-md-links\\archivos', { validate: true }).then((link) => {
+/*  mdLinks('D:\\1.LABORATORIA\\LIM013-fe-md-links\\archivos', { validate: true }).then((link) => {
   console.log(link);
-});
+}); */
